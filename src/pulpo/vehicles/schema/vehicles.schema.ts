@@ -23,8 +23,8 @@ export class Vehicles {
   @Prop({ type: Boolean, default: false })
   estado: boolean;
 
-  @Prop({ type: Boolean, default: false })
-  asignado: Date;
+  @Prop({ type: String, default: false })
+  asignado: string;
 }
 
 export type VehiclesDocument = Vehicles & Document;
