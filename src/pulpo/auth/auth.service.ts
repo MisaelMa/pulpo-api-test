@@ -10,7 +10,7 @@ import { PATTERN_VALID_EMAIL } from '../../config/config.constants';
 import { JwtService } from '@nestjs/jwt';
 import { User } from '../user/schema/user.schema';
 import { UserService } from '../user/user.service';
-import { JwtPayload, PayloadToken } from 'src/common/interfaces/jwt';
+import { JwtPayload, PayloadToken } from '../../common/interfaces/jwt';
 
 @Injectable()
 export class AuthService {

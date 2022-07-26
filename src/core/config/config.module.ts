@@ -1,19 +1,19 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule as ConfigModulePackage } from '@nestjs/config';
 
-import serverConfig from 'src/config/server.config';
-import databaseConfig from 'src/config/database.config';
-import configSchema from 'src/config/config.schema';
+import serverConfig from '../../config/server.config';
+import databaseConfig from '../../config/database.config';
+import configSchema from '../../config/config.schema';
 
 @Module({
   imports: [
     ConfigModulePackage.forRoot({
       // ignoreEnvFile: process.env.NODE_ENV === 'production',
-      envFilePath: `environment/.env.${process.env.NODE_ENV || 'development'}`,
+      envFilePath: `environment/.env.development`,
       load: [serverConfig, databaseConfig],
       validationSchema: configSchema,
       isGlobal: true,
     }),
   ],
 })
-export class ConfigModule {}
+export class ConfigModule { }
