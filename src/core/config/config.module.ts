@@ -9,7 +9,7 @@ import configSchema from '../../config/config.schema';
   imports: [
     ConfigModulePackage.forRoot({
       // ignoreEnvFile: process.env.NODE_ENV === 'production',
-      envFilePath: `environment/.env.production`,
+      envFilePath: `environment/.env.development`,
       load: [serverConfig, databaseConfig],
       validationSchema: configSchema,
       isGlobal: true,
