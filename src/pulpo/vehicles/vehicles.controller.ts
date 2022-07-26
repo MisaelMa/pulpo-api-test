@@ -8,7 +8,12 @@ import {
     Delete,
 } from '@nestjs/common';
 import { ModelType } from '@typegoose/typegoose/lib/types';
-import { ApiOperation, ApiQuery } from '@nestjs/swagger';
+import {
+    ApiBody,
+    ApiOperation,
+    ApiQuery,
+    ApiBearerAuth,
+} from '@nestjs/swagger';
 import { Crud } from 'nestjs-mongoose-crud';
 import {
     CrudOptionsWithModel,
@@ -28,6 +33,7 @@ export class CrudPlaceholderDto {
     [key: string]: any;
 }
 
+@ApiBearerAuth()
 @Crud({
     model: Vehicles,
 })
@@ -95,6 +101,7 @@ export class VehiclesController {
     }
 
     @Get(':id')
+    @ApiBody({ type: Vehicles })
     @ApiOperation({ summary: 'Find a record' })
     findOne(
         @Param('id') id: string,
@@ -118,7 +125,8 @@ export class VehiclesController {
 
     @Post()
     @ApiOperation({ summary: 'Create a record' })
-    create(@Body() body: CrudPlaceholderDto) {
+    @ApiBody({ type: Vehicles })
+    create(@Body() body: Vehicles) {
         const transform = get(this.crudOptions, 'routes.create.transform');
         if (transform) {
             body = transform(body);
@@ -128,7 +136,8 @@ export class VehiclesController {
 
     @Put(':id')
     @ApiOperation({ summary: 'Update a record' })
-    update(@Param('id') id: string, @Body() body: CrudPlaceholderDto) {
+    @ApiBody({ type: Vehicles })
+    update(@Param('id') id: string, @Body() body: Vehicles) {
         const transform = get(this.crudOptions, 'routes.update.transform');
         if (transform) {
             body = transform(body);

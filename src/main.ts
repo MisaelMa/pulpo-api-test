@@ -17,10 +17,14 @@ async function bootstrap() {
   const options = new DocumentBuilder()
     .addBearerAuth()
     .setTitle('Nest Starter Boilerplate')
-    .setDescription('Nest collection of tools and authentication ready to use.')
+    .setDescription(
+      'Nest collection of tools and authentication ready to use.'
+    )
     .setVersion('1.0')
+    .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, options);
+
   SwaggerModule.setup('/api', app, document);
   app.useStaticAssets(join(__dirname, '..', 'public'));
   // Environments
@@ -31,7 +35,7 @@ async function bootstrap() {
 
   await app.listen(port);
   logger.log(
-    `Application is running in ${environment.toUpperCase()} on: ${await app.getUrl()}`,
+    `Application is running in ${environment.toUpperCase()} on: ${await app.getUrl()}`
   );
 }
 bootstrap();
